@@ -2,22 +2,15 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".ui.main.MainActivity">
-    
+
     <fragment
         android:id="@+id/fragTop"
-        android:name="com.example.consultants.week4weekend.ui.main.TopFragment"
+        android:name="com.example.consultants.week4weekend.ui.fragment.TopFragment"
         android:layout_width="match_parent"
         android:layout_height="140dp" />
-
-    <TextView
-        android:layout_gravity="center"
-        android:id="@+id/tvZipCode"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Zip Code: 12345" />
 
 </LinearLayout>

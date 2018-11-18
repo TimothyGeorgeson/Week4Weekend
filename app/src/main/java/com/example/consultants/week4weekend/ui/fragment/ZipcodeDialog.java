@@ -1,4 +1,4 @@
-package com.example.consultants.week4weekend.ui.main;
+package com.example.consultants.week4weekend.ui.fragment;
 
 import android.content.Context;
 import android.os.Bundle;

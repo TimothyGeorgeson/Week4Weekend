@@ -1,10 +1,12 @@
-package com.example.consultants.week4weekend.ui.main;
+package com.example.consultants.week4weekend.ui.fragment;
 
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.example.consultants.week4weekend.R;
 

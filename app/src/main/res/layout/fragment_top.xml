@@ -4,48 +4,49 @@
     android:layout_width="match_parent"
     android:layout_height="140dp"
     android:background="@color/colorPrimary"
-    tools:context=".ui.main.TopFragment">
+    tools:context=".ui.fragment.TopFragment">
 
     <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
 
         <TextView
-            android:layout_margin="6dp"
-            android:textSize="20sp"
-            android:textColor="@android:color/white"
             android:id="@+id/tvLocation"
-            android:text="Name of City, ST"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:layout_margin="6dp"
+            android:text="Name of City, ST"
+            android:textColor="@android:color/white"
+            android:textSize="20sp" />
 
         <ImageButton
-            android:background="@color/colorPrimary"
-            android:src="@drawable/ic_settings"
-            android:layout_margin="6dp"
-            android:layout_alignParentRight="true"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_margin="6dp"
+            android:background="@color/colorPrimary"
+            android:src="@drawable/ic_settings" />
 
         <TextView
-            android:gravity="center"
             android:id="@+id/tvTemp"
-            android:layout_below="@id/tvLocation"
-            android:textSize="48sp"
-            android:textColor="@android:color/white"
-            android:text="55°"
-            android:background="?attr/colorPrimary"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tvLocation"
+            android:background="?attr/colorPrimary"
+            android:gravity="center"
+            android:text="55°"
+            android:textColor="@android:color/white"
+            android:textSize="48sp" />
 
         <TextView
-            android:gravity="center"
-            android:textColor="@android:color/white"
-            android:textSize="20sp"
-            android:text="Clear"
-            android:layout_below="@id/tvTemp"
+            android:id="@+id/tvCondition"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tvTemp"
+            android:gravity="center"
+            android:text="Clear"
+            android:textColor="@android:color/white"
+            android:textSize="20sp" />
 
     </RelativeLayout>
 

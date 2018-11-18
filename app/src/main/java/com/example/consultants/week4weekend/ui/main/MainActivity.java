@@ -1,26 +1,29 @@
 package com.example.consultants.week4weekend.ui.main;
 
-import android.content.DialogInterface;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.Toolbar;
 import android.util.Log;
-import android.view.Menu;
+import android.view.View;
 import android.widget.TextView;
 
 import com.example.consultants.week4weekend.R;
 import com.example.consultants.week4weekend.model.remote.RemoteDataSource;
 import com.example.consultants.week4weekend.model.remote.WeatherRepository;
 import com.example.consultants.week4weekend.model.weatherdata.WeatherResponse;
+import com.example.consultants.week4weekend.ui.fragment.TopFragment;
+import com.example.consultants.week4weekend.ui.fragment.ZipcodeDialog;
+import com.example.consultants.week4weekend.util.WeatherConversion;
 
 public class MainActivity extends AppCompatActivity implements MainContract.View,
         ZipcodeDialog.OnInputListener {
     public static final String TAG = MainActivity.class.getSimpleName() + "_TAG";
 
-    public String zipCode;
-    public TextView tvZipCode;
+    private FragmentManager fm;
     private MainPresenter presenter;
+    private TextView tvLocation;
+    private TextView tvTemp;
+    private TextView tvCondition;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,11 +32,16 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
 
         presenter = new MainPresenter(new WeatherRepository(new RemoteDataSource()));
 
-        tvZipCode = findViewById(R.id.tvZipCode);
+        tvLocation = findViewById(R.id.tvLocation);
+        tvTemp = findViewById(R.id.tvTemp);
+        tvCondition = findViewById(R.id.tvCondition);
+
+        //initialize fragment manager
+        fm = getSupportFragmentManager();
 
         //show dialog to ask for zipcode
         ZipcodeDialog zcDialog = new ZipcodeDialog();
-        zcDialog.show(getSupportFragmentManager(), "ZipCodeDialog");
+        zcDialog.show(fm, "ZipCodeDialog");
 
     }
 
@@ -57,6 +65,18 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
     @Override
     public void onWeather(WeatherResponse wResponse) {
         Log.d(TAG, "onWeather: " + wResponse.getMain().getTemp());
+
+        //set city name (the OpenWeatherMap API doesn't give State info)
+        tvLocation.setText(wResponse.getName());
+
+        //set temp based on F or C preferences
+        double tempDbl = WeatherConversion.kelvinToF(wResponse.getMain().getTemp());
+        int temp = (int)Math.round(tempDbl);
+        tvTemp.setText(Integer.toString(temp) + "°");
+
+        //set conditions (rain, sunny, cloudy, etc)
+        tvCondition.setText(wResponse.getWeather().get(0).getMain());
+
     }
 
     @Override
