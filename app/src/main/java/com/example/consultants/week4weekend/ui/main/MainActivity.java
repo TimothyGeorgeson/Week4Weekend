@@ -3,6 +3,8 @@ package com.example.consultants.week4weekend.ui.main;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.widget.TextView;
 
@@ -27,6 +29,10 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
     private TextView tvLocation;
     private TextView tvTemp;
     private TextView tvCondition;
+
+    RecyclerView rvForecastList;
+    RecyclerViewAdapter adapter;
+    RecyclerView.LayoutManager layoutManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -91,7 +97,13 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
     public void onForecast(ForecastResponse fResponse) {
         ArrayList<MyForecast> forecastList = ConversionHelper.parseData(fResponse);
 
-        Log.d(TAG, "onForecast: " + forecastList.get(0).toString());
+        //setup adapter to populate recyclerview
+        adapter = new RecyclerViewAdapter(forecastList);
+        layoutManager = new LinearLayoutManager(this);
+        rvForecastList = findViewById(R.id.rvForecast);
+        rvForecastList.setAdapter(adapter);
+        rvForecastList.setLayoutManager(layoutManager);
+
     }
 
     @Override
