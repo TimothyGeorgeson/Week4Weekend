@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="140dp"
-    android:background="@color/colorPrimary"
+    android:background="@color/colorPrimaryCool"
     tools:context=".ui.fragment.TopFragment">
 
     <RelativeLayout
@@ -20,11 +20,12 @@
             android:textSize="20sp" />
 
         <ImageButton
+            android:id="@+id/btnSettings"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_margin="6dp"
-            android:background="@color/colorPrimary"
+            android:background="@android:color/transparent"
             android:src="@drawable/ic_settings" />
 
         <TextView
@@ -32,7 +33,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/tvLocation"
-            android:background="?attr/colorPrimary"
             android:gravity="center"
             android:text="55°"
             android:textColor="@android:color/white"

@@ -19,28 +19,6 @@ public class ConversionHelper {
         return (k - 273.15);
     }
 
-//    private static void convertDate(int dateUnix) {
-//        // convert seconds to milliseconds
-//        Date date = new Date(dateUnix * 1000L);
-//        // the format of your date
-//        //SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd");
-//        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd h:mm z");
-//// give a timezone reference for formatting (see comment at the bottom)
-//        //sdf.setTimeZone(java.util.TimeZone.getTimeZone("GMT-4"));
-//        String formattedDate = sdf.format(date);
-//        System.out.println(formattedDate);
-//    }
-
-//    public static void main(String[] args) {
-//        Date now = new Date();
-//        System.out.println(now.getTime());
-//        convertDate((int) (now.getTime() / 1000));
-//        //convertDate(1542531600);
-//        convertDate(1542574800);
-//        System.out.println(getHour(1542574800));
-//        System.out.println(getDay(1542574800));
-//    }
-
     private static int getHour(int dateUnix) {
         Date date = new Date(dateUnix * 1000L);
         SimpleDateFormat hourF = new SimpleDateFormat("H");

@@ -9,23 +9,26 @@ import android.util.Log;
 import android.widget.TextView;
 
 import com.example.consultants.week4weekend.R;
+import com.example.consultants.week4weekend.di.DaggerMainComponent;
 import com.example.consultants.week4weekend.model.forecastdata.ForecastResponse;
 import com.example.consultants.week4weekend.model.local.MyForecast;
 import com.example.consultants.week4weekend.model.remote.RemoteDataSource;
 import com.example.consultants.week4weekend.model.remote.VolleyQueue;
 import com.example.consultants.week4weekend.model.remote.WeatherRepository;
 import com.example.consultants.week4weekend.model.weatherdata.WeatherResponse;
+import com.example.consultants.week4weekend.ui.fragment.TopFragment;
 import com.example.consultants.week4weekend.ui.fragment.ZipcodeDialog;
 import com.example.consultants.week4weekend.util.ConversionHelper;
 
 import java.util.ArrayList;
+
+import javax.inject.Inject;
 
 public class MainActivity extends AppCompatActivity implements MainContract.View,
         ZipcodeDialog.OnInputListener {
     public static final String TAG = MainActivity.class.getSimpleName() + "_TAG";
 
     private FragmentManager fm;
-    private MainPresenter presenter;
     private TextView tvLocation;
     private TextView tvTemp;
     private TextView tvCondition;
@@ -33,13 +36,17 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
     RecyclerView rvForecastList;
     RecyclerViewAdapter adapter;
     RecyclerView.LayoutManager layoutManager;
+    private TopFragment topFragment;
+
+    @Inject
+    MainPresenter presenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        presenter = new MainPresenter(new WeatherRepository(new RemoteDataSource()));
+        DaggerMainComponent.create().inject(this);
 
         tvLocation = findViewById(R.id.tvLocation);
         tvTemp = findViewById(R.id.tvTemp);
@@ -55,7 +62,6 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
         //show dialog to ask for zipcode
         ZipcodeDialog zcDialog = new ZipcodeDialog();
         zcDialog.show(fm, "ZipCodeDialog");
-
     }
 
     @Override
@@ -90,6 +96,18 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
 
         //set conditions (rain, sunny, cloudy, etc)
         tvCondition.setText(wResponse.getWeather().get(0).getMain());
+
+        //setting color based on temperature
+        try {  //getView() may produce null, so wrapping in try catch
+            topFragment = (TopFragment)fm.findFragmentById(R.id.fragTop);
+            if (temp >= 60) {
+                topFragment.getView().setBackgroundColor(getResources().getColor(R.color.colorPrimaryHot));
+            } else {
+                topFragment.getView().setBackgroundColor(getResources().getColor(R.color.colorPrimaryCool));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
     }
 
