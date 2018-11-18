@@ -30,6 +30,10 @@ public class MainPresenter implements MainContract.Presenter {
         });
     }
 
+    public void getForecast(String zip) {
+        repository.getForecast(zip);
+    }
+
     @Override
     public void onAttach(MainContract.View view) {
         this.view = view;

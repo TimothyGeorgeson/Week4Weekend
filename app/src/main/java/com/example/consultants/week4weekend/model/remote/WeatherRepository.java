@@ -21,5 +21,9 @@ public class WeatherRepository {
                 .subscribe(new RemoteObserver(callback));
 
     }
+
+    public void getForecast(String zip) {
+        remoteDataSource.getWeatherVolley(zip);
+    }
 }
 

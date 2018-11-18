@@ -9,6 +9,7 @@ import android.widget.TextView;
 
 import com.example.consultants.week4weekend.R;
 import com.example.consultants.week4weekend.model.remote.RemoteDataSource;
+import com.example.consultants.week4weekend.model.remote.VolleyQueue;
 import com.example.consultants.week4weekend.model.remote.WeatherRepository;
 import com.example.consultants.week4weekend.model.weatherdata.WeatherResponse;
 import com.example.consultants.week4weekend.ui.fragment.TopFragment;
@@ -36,6 +37,10 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
         tvTemp = findViewById(R.id.tvTemp);
         tvCondition = findViewById(R.id.tvCondition);
 
+        //setup queue for volley network calls
+        VolleyQueue.getInstance().setContext(this);
+        VolleyQueue.getInstance().setQueue();
+
         //initialize fragment manager
         fm = getSupportFragmentManager();
 
@@ -60,6 +65,7 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
     @Override
     public void startWeatherWithZip(String zip) {
         presenter.getWeather(zip);
+        presenter.getForecast(zip);
     }
 
     @Override
