@@ -4,15 +4,14 @@ import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
 import android.widget.TextView;
 
 import com.example.consultants.week4weekend.R;
+import com.example.consultants.week4weekend.model.forecastdata.ForecastResponse;
 import com.example.consultants.week4weekend.model.remote.RemoteDataSource;
 import com.example.consultants.week4weekend.model.remote.VolleyQueue;
 import com.example.consultants.week4weekend.model.remote.WeatherRepository;
 import com.example.consultants.week4weekend.model.weatherdata.WeatherResponse;
-import com.example.consultants.week4weekend.ui.fragment.TopFragment;
 import com.example.consultants.week4weekend.ui.fragment.ZipcodeDialog;
 import com.example.consultants.week4weekend.util.WeatherConversion;
 
@@ -82,6 +81,11 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
 
         //set conditions (rain, sunny, cloudy, etc)
         tvCondition.setText(wResponse.getWeather().get(0).getMain());
+
+    }
+
+    @Override
+    public void onForecast(ForecastResponse fResponse) {
 
     }
 

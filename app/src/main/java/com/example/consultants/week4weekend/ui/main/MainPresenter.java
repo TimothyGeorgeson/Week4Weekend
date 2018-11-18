@@ -35,6 +35,7 @@ public class MainPresenter implements MainContract.Presenter {
         });
     }
 
+    @Override
     public void getForecast(String zip) {
 
         repository.getForecast(zip, new ForecastCallback() {
@@ -45,7 +46,7 @@ public class MainPresenter implements MainContract.Presenter {
 
             @Override
             public void onFailure(String error) {
-
+                view.showError(error);
             }
         });
     }

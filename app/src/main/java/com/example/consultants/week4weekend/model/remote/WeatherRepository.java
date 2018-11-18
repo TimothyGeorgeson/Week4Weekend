@@ -1,8 +1,5 @@
 package com.example.consultants.week4weekend.model.remote;
 
-import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.schedulers.Schedulers;
-
 public class WeatherRepository {
 
     RemoteDataSource remoteDataSource;
@@ -12,17 +9,12 @@ public class WeatherRepository {
     }
 
     public void getWeather(String zip, final WeatherCallback callback) {
-
-        remoteDataSource.getWeatherObs(zip)
-//                    make the network call on the worker thread
-                .subscribeOn(Schedulers.io())
-//                    get the results back on the main thread
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new RemoteObserver(callback));
-
+        //call to volley for current weather
+        remoteDataSource.getWeatherVolley(zip, callback);
     }
 
     public void getForecast(String zip, final ForecastCallback callback) {
+        //call to volley for forecast
         remoteDataSource.getForecastVolley(zip, callback);
     }
 }
