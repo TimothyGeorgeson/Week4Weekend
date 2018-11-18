@@ -8,12 +8,15 @@ import android.widget.TextView;
 
 import com.example.consultants.week4weekend.R;
 import com.example.consultants.week4weekend.model.forecastdata.ForecastResponse;
+import com.example.consultants.week4weekend.model.local.MyForecast;
 import com.example.consultants.week4weekend.model.remote.RemoteDataSource;
 import com.example.consultants.week4weekend.model.remote.VolleyQueue;
 import com.example.consultants.week4weekend.model.remote.WeatherRepository;
 import com.example.consultants.week4weekend.model.weatherdata.WeatherResponse;
 import com.example.consultants.week4weekend.ui.fragment.ZipcodeDialog;
-import com.example.consultants.week4weekend.util.WeatherConversion;
+import com.example.consultants.week4weekend.util.ConversionHelper;
+
+import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity implements MainContract.View,
         ZipcodeDialog.OnInputListener {
@@ -75,7 +78,7 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
         tvLocation.setText(wResponse.getName());
 
         //set temp based on F or C preferences
-        double tempDbl = WeatherConversion.kelvinToF(wResponse.getMain().getTemp());
+        double tempDbl = ConversionHelper.kelvinToF(wResponse.getMain().getTemp());
         int temp = (int)Math.round(tempDbl);
         tvTemp.setText(Integer.toString(temp) + "°");
 
@@ -86,7 +89,9 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
 
     @Override
     public void onForecast(ForecastResponse fResponse) {
+        ArrayList<MyForecast> forecastList = ConversionHelper.parseData(fResponse);
 
+        Log.d(TAG, "onForecast: " + forecastList.get(0).toString());
     }
 
     @Override

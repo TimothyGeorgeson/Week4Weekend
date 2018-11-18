@@ -7,7 +7,7 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
-import com.example.consultants.week4weekend.NetworkHelper;
+import com.example.consultants.week4weekend.util.NetworkHelper;
 import com.example.consultants.week4weekend.model.forecastdata.ForecastResponse;
 import com.example.consultants.week4weekend.model.weatherdata.WeatherResponse;
 import com.google.gson.Gson;
@@ -31,19 +31,16 @@ public class RemoteDataSource {
 
         String url = builder.build().toString();
 
-        Log.d(TAG, "getForecastVolley: " + url);
-
         //use string request, then convert string with Gson to ForecastResponse
         StringRequest stringRequest = new StringRequest
                 (Request.Method.GET, url, new Response.Listener<String>() {
 
                     @Override
                     public void onResponse(String response) {
-                        Log.d(TAG, "onResponse: " + response.substring(0, 50));
                         GsonBuilder gsonBuilder = new GsonBuilder();
                         Gson gson = gsonBuilder.create();
                         ForecastResponse forecastResponse = gson.fromJson(response, ForecastResponse.class);
-                        Log.d(TAG, "onResponse2: " + forecastResponse.getCod());
+                        Log.d(TAG, "onResponse: Forecast: " + forecastResponse.getCod());
                         callback.onSuccess(forecastResponse);
                     }
                 }, new Response.ErrorListener() {
@@ -73,19 +70,16 @@ public class RemoteDataSource {
 
         String url = builder.build().toString();
 
-        Log.d(TAG, "getWeatherVolley: " + url);
-
         //use string request, then convert string with Gson to WeatherResponse
         StringRequest stringRequest = new StringRequest
                 (Request.Method.GET, url, new Response.Listener<String>() {
 
                     @Override
                     public void onResponse(String response) {
-                        Log.d(TAG, "onResponse: " + response.substring(0, 50));
                         GsonBuilder gsonBuilder = new GsonBuilder();
                         Gson gson = gsonBuilder.create();
                         WeatherResponse wResponse = gson.fromJson(response, WeatherResponse.class);
-                        Log.d(TAG, "onResponse2: " + wResponse.getCod());
+                        Log.d(TAG, "onResponse: Weather: " + wResponse.getCod());
                         callback.onSuccess(wResponse);
                     }
                 }, new Response.ErrorListener() {

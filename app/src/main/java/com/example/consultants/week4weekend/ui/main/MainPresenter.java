@@ -41,7 +41,7 @@ public class MainPresenter implements MainContract.Presenter {
         repository.getForecast(zip, new ForecastCallback() {
             @Override
             public void onSuccess(ForecastResponse fResponse) {
-                Log.d(TAG, "onSuccess: volley");
+                view.onForecast(fResponse);
             }
 
             @Override
