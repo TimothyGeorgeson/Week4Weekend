@@ -49,7 +49,7 @@ public class ConversionHelper {
 
     private static String getDay(int dateUnix) {
         Date date = new Date(dateUnix * 1000L);
-        SimpleDateFormat dayF = new SimpleDateFormat("EEEEE, MMMMM d");
+        SimpleDateFormat dayF = new SimpleDateFormat("EEEE, MMMM d");
         return dayF.format(date);
     }
 
