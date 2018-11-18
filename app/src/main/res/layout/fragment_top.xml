@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="140dp"
+    android:background="@color/colorPrimary"
+    tools:context=".ui.main.TopFragment">
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_margin="6dp"
+            android:textSize="20sp"
+            android:textColor="@android:color/white"
+            android:id="@+id/tvLocation"
+            android:text="Name of City, ST"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <ImageButton
+            android:background="@color/colorPrimary"
+            android:src="@drawable/ic_settings"
+            android:layout_margin="6dp"
+            android:layout_alignParentRight="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:gravity="center"
+            android:id="@+id/tvTemp"
+            android:layout_below="@id/tvLocation"
+            android:textSize="48sp"
+            android:textColor="@android:color/white"
+            android:text="55°"
+            android:background="?attr/colorPrimary"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:gravity="center"
+            android:textColor="@android:color/white"
+            android:textSize="20sp"
+            android:text="Clear"
+            android:layout_below="@id/tvTemp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+    </RelativeLayout>
+
+</FrameLayout>

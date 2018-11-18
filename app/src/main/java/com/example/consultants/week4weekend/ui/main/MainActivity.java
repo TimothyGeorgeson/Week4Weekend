@@ -29,22 +29,12 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
 
         presenter = new MainPresenter(new WeatherRepository(new RemoteDataSource()));
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-
         tvZipCode = findViewById(R.id.tvZipCode);
 
         //show dialog to ask for zipcode
         ZipcodeDialog zcDialog = new ZipcodeDialog();
         zcDialog.show(getSupportFragmentManager(), "ZipCodeDialog");
 
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
     }
 
     @Override

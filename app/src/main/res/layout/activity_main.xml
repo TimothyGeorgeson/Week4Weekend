@@ -7,53 +7,11 @@
     android:layout_height="match_parent"
     tools:context=".ui.main.MainActivity">
     
-    <android.support.v7.widget.Toolbar
-        android:id="@+id/toolbar"
-        android:minHeight="130dp"
-        android:gravity="top"
-        app:title="Weather App"
+    <fragment
+        android:id="@+id/fragTop"
+        android:name="com.example.consultants.week4weekend.ui.main.TopFragment"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:titleTextColor="@android:color/white"
-        android:background="?attr/colorPrimary">
-
-        <RelativeLayout
-
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
-
-            <TextView
-                android:id="@+id/space"
-                android:text="        "
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-
-            <TextView
-                android:gravity="center"
-                android:id="@+id/tvTemp"
-                android:layout_toRightOf="@+id/space"
-                android:textSize="36sp"
-                android:textColor="@android:color/white"
-                android:text="55°"
-                android:background="?attr/colorPrimary"
-                android:layout_width="80dp"
-                android:layout_height="wrap_content" />
-
-            <TextView
-                android:gravity="center"
-                android:textColor="@android:color/white"
-                android:textSize="20sp"
-                android:text="Clear"
-                android:layout_toRightOf="@id/space"
-                android:layout_below="@id/tvTemp"
-                android:layout_width="80dp"
-                android:layout_height="wrap_content" />
-
-        </RelativeLayout>
-
-
-
-    </android.support.v7.widget.Toolbar>
+        android:layout_height="140dp" />
 
     <TextView
         android:layout_gravity="center"
