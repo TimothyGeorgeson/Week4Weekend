@@ -3,7 +3,7 @@ package com.example.consultants.week4weekend.model.remote;
 import android.content.Context;
 
 import com.android.volley.RequestQueue;
-import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
 public class VolleyQueue {
@@ -31,7 +31,7 @@ public class VolleyQueue {
         this.queue = Volley.newRequestQueue(context);
     }
 
-    public void addToRequestQueue(JsonObjectRequest jsonObjectRequest) {
-        queue.add(jsonObjectRequest);
+    public void addToRequestQueue(StringRequest stringRequest) {
+        queue.add(stringRequest);
     }
 }

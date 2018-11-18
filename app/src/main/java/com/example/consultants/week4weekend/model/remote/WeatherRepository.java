@@ -22,8 +22,8 @@ public class WeatherRepository {
 
     }
 
-    public void getForecast(String zip) {
-        remoteDataSource.getWeatherVolley(zip);
+    public void getForecast(String zip, final ForecastCallback callback) {
+        remoteDataSource.getForecastVolley(zip, callback);
     }
 }
 
